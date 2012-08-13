@@ -1641,7 +1641,7 @@ def convertColor(value):
 			b = int( rgbMatch.group(3) )
 			s = '#%02x%02x%02x' % (r, g, b)
 	
-	if s[0] == '#':
+	if options.short_hex_colors and s[0] == '#':
 		s = s.lower()
 		if len(s)==7 and s[1]==s[2] and s[3]==s[4] and s[5]==s[6]:
 			s = '#'+s[1]+s[3]+s[5]
@@ -3055,6 +3055,9 @@ _options_parser = optparse.OptionParser(
 _options_parser.add_option("--disable-simplify-colors",
 	action="store_false", dest="simple_colors", default=True,
 	help="won't convert all colors to #RRGGBB format")
+_options_parser.add_option("--enable-short-hex-colors",
+	action="store_true", dest="short_hex_colors", default=False,
+	help="will shorted #AA00FF to #AOF where possible")
 _options_parser.add_option("--disable-style-to-xml",
 	action="store_false", dest="style_to_xml", default=True,
 	help="won't convert styles into XML attributes")
